@@ -68,15 +68,15 @@ Interactive dashboard (`SUPERSTORE SALES & CUSTOMER ANALYTICS DASHBOARD.pbix`) w
 - South region drives the largest share of total revenue (~36%)
 - Technology is the highest-profit category
 
-![Region Revenue Share](screenshots/region_revenue_share.png)
+![Region Revenue Share](region_revenue_share.png)
 
 **Profitability**
 - Discount and profit are negatively correlated (r ≈ -0.48); orders discounted 30%+ run at a loss on average
 
-![Discount vs Profit](screenshots/discount_vs_profit.png)
+![Discount vs Profit](discount_vs_profit.png)
 
 **Trend**
-![Monthly Sales Trend](screenshots/monthly_sales_trend.png)
+![Monthly Sales Trend](monthly_sales_trend.png)
 
 **Recommendation:** Reducing deep discounting (30%+) on low-margin sub-categories is the clearest lever to recover profit margin.
 
