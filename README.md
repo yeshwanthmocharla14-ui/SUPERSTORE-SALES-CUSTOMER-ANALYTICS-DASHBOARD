@@ -32,16 +32,16 @@ Columns: Order ID, Order/Ship Date, Customer ID, Segment, Region, State, Categor
 ## 📌 Project Workflow
 
 ### 1. Data Collection
-Synthetic dataset generated with `python/generate_data.py`, saved to `data/superstore_raw.csv`.
+Synthetic dataset generated with `generate_data.py`, saved to `superstore_raw.csv`.
 
 ### 2. Data Cleaning & Preprocessing
 - Checked missing/null values (~7.5% of records had missing or inconsistent fields)
 - Standardized inconsistent region text (casing/whitespace)
 - Parsed date columns to datetime, dropped unrecoverable rows, removed duplicates
-- Full code: [`python/eda_analysis.py`](python/eda_analysis.py) / [`python/superstore_eda.ipynb`](python/superstore_eda.ipynb)
+- Full code: [`eda_analysis.py`](eda_analysis.py) / [`superstore_eda.ipynb`](superstore_eda.ipynb)
 
 ### 3. SQL Business Analysis
-Full query set in [`sql/superstore_analysis.sql`](sql/superstore_analysis.sql), including:
+Full query set in [`superstore_analysis.sql`](superstore_analysis.sql), including:
 - Revenue & profit by region (window functions for % share)
 - Profit by category, loss-making sub-categories
 - Monthly sales trend with month-over-month growth (`LAG`)
@@ -49,7 +49,7 @@ Full query set in [`sql/superstore_analysis.sql`](sql/superstore_analysis.sql), 
 - Segment-wise performance (CTEs)
 
 ### 4. Python EDA
-Full notebook: [`python/superstore_eda.ipynb`](python/superstore_eda.ipynb)
+Full notebook: [`superstore_eda.ipynb`](superstore_eda.ipynb)
 - Region revenue share
 - Discount vs profit correlation
 - Monthly sales trend
