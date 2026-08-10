@@ -1,252 +1,113 @@
-# SUPERSTORE-SALES-CUSTOMER-ANALYTICS-DASHBOARD
 # 📊 Sales & Customer Analytics Project
 
 ## 📌 Project Overview
 
-This is an end-to-end Data Analytics project developed to analyze retail sales and customer behavior using SQL, Python, and Power BI. The project focuses on identifying meaningful business insights from historical sales data and transforming raw data into actionable recommendations through data analysis and visualization.
+An end-to-end Data Analytics project analyzing retail sales and customer behavior using SQL, Python, and Power BI. The project identifies business insights from historical sales data — sales performance, customer purchasing behavior, profitability trends, regional performance, and the impact of discounts on profit margins — and turns them into actionable recommendations.
 
-The project simulates a real-world business scenario where a company wants to understand its sales performance, customer purchasing behavior, profitability trends, regional performance, and the impact of discounts on profit margins.
+## 🎯 Project Objectives
 
-Through this project, I performed data cleaning, SQL-based business analysis, exploratory data analysis (EDA) in Python, and created an interactive Power BI dashboard for business reporting and decision-making.
-
----
-
-# 🎯 Project Objectives
-
-The main objectives of this project are:
-
-- Analyze sales and profit trends across different regions and categories
+- Analyze sales and profit trends across regions and categories
 - Identify top-performing customers and products
 - Understand the relationship between discounts and profitability
-- Perform customer and sales analytics using SQL and Python
 - Build an interactive dashboard for business stakeholders
 - Generate actionable business insights from data
 
----
+## 🛠️ Tools & Technologies
 
-# 🛠️ Tool / Technology & 📌 Purpose |
+| Tool | Purpose |
+|---|---|
+| 🗄️ SQL (MySQL) | Data querying and business analysis |
+| 🐍 Python | Data cleaning and exploratory data analysis |
+| 🐼 Pandas / NumPy | Data manipulation and numerical computation |
+| 📈 Matplotlib / Seaborn | Data visualization |
+| 📊 Power BI | Interactive dashboard |
+| 📑 Jupyter Notebook | Interactive analysis environment |
 
-🗄️ SQL (MySQL) - Data querying and business analysis 
-🐍 Python - Data cleaning and exploratory data analysis
-🐼 Pandas - Data manipulation and preprocessing 
-🔢 NumPy - Numerical computations
-📈 Matplotlib - Data visualization and chart creation 
-🎨 Seaborn - Statistical data visualization
-📊 Power BI - Interactive dashboard development
-🌐 GitHub - Version control and project portfolio
-💻 VS Code - Code editor for Python and SQL development
-📑 Jupyter Notebook - Interactive Python analysis environment 
+## 📂 Dataset Information
 
----
+**Source:** Synthetic dataset generated to mirror the structure and scale of the public Superstore retail dataset (52,347 transaction records), since the original working files were lost. Generation logic is in [`python/generate_data.py`](python/generate_data.py) — fully reproducible.
 
-# 📂 Dataset Information
+Columns: Order ID, Order/Ship Date, Customer ID, Segment, Region, State, Category, Sub-Category, Sales, Quantity, Discount, Profit.
 
-### Dataset Used: Superstore Sales Dataset
+## 📌 Project Workflow
 
-The dataset contains retail business transaction records including:
+### 1. Data Collection
+Synthetic dataset generated with `python/generate_data.py`, saved to `data/superstore_raw.csv`.
 
-- Order details
-- Customer information
-- Product categories
-- Sales and profit
-- Discounts
-- Shipping information
-- Regional and state-level sales data
+### 2. Data Cleaning & Preprocessing
+- Checked missing/null values (~7.5% of records had missing or inconsistent fields)
+- Standardized inconsistent region text (casing/whitespace)
+- Parsed date columns to datetime, dropped unrecoverable rows, removed duplicates
+- Full code: [`python/eda_analysis.py`](python/eda_analysis.py) / [`python/superstore_eda.ipynb`](python/superstore_eda.ipynb)
 
-# 📌 Project Workflow
+### 3. SQL Business Analysis
+Full query set in [`sql/superstore_analysis.sql`](sql/superstore_analysis.sql), including:
+- Revenue & profit by region (window functions for % share)
+- Profit by category, loss-making sub-categories
+- Monthly sales trend with month-over-month growth (`LAG`)
+- Top 10 customers by revenue
+- Segment-wise performance (CTEs)
 
-## 1️⃣ Data Collection
+### 4. Python EDA
+Full notebook: [`python/superstore_eda.ipynb`](python/superstore_eda.ipynb)
+- Region revenue share
+- Discount vs profit correlation
+- Monthly sales trend
+- Profit by category
 
-- Downloaded the Superstore retail dataset from Kaggle
-- Imported the dataset into MySQL, Python, and Power BI
+### 5. Power BI Dashboard
+Interactive dashboard (`SUPERSTORE SALES & CUSTOMER ANALYTICS DASHBOARD.pbix`) with KPI cards (Total Sales, Profit, Orders, Customers), regional/category charts, and slicers for Region, Category, Segment, and Ship Mode.
 
-## 2️⃣ Data Cleaning & Preprocessing
+## 📈 Dashboard Preview
 
-Performed data cleaning operations to improve data quality:
+![Dashboard](SUPERSTORE%20SALES%20%26%20CUSTOMER%20ANALYTICS%20DASHBOARD.png)
 
-- Checked missing/null values
-- Removed duplicate records
-- Verified column data types
-- Converted date columns into proper datetime format
-- Created Month-Year columns for trend analysis
+## 📊 Key Business Insights
 
-### Python Operations Performed
+**Sales**
+- South region drives the largest share of total revenue (~36%)
+- Technology is the highest-profit category
 
-python
-df.isnull().sum()
-df.duplicated().sum()
-df['Order Date'] = pd.to_datetime(df['Order Date'])
+![Region Revenue Share](screenshots/region_revenue_share.png)
 
-📌 SQL Analysis
+**Profitability**
+- Discount and profit are negatively correlated (r ≈ -0.48); orders discounted 30%+ run at a loss on average
 
-Performed SQL-based business analysis using MySQL.
+![Discount vs Profit](screenshots/discount_vs_profit.png)
 
-Key SQL Operations
-Aggregate functions
-GROUP BY analysis
-Sorting and filtering
-Customer analysis
-Profitability analysis
-Trend analysis
+**Trend**
+![Monthly Sales Trend](screenshots/monthly_sales_trend.png)
 
-🔍 Business Questions Solved Using SQL
+**Recommendation:** Reducing deep discounting (30%+) on low-margin sub-categories is the clearest lever to recover profit margin.
 
-Sales Analysis
-What is the total sales revenue?
-Which region generated the highest sales?
-Which categories contributed the highest profit?
-Customer Analysis
-Who are the top 10 customers?
-Which customers contribute the highest revenue?
-Product Analysis
-Which products are loss-making?
-Which sub-categories are most profitable?
-Trend Analysis
-What are the monthly sales trends?
-Which months recorded peak sales?
+## 📁 Project Structure
 
-📌 Sample SQL Query
-
-SELECT Category,
-       SUM(Profit) AS Total_Profit
-FROM superstore
-GROUP BY Category
-ORDER BY Total_Profit DESC;
-
-🐍 Python Exploratory Data Analysis (EDA)
-
-Performed Exploratory Data Analysis using Python libraries such as Pandas, Matplotlib, and Seaborn.
-
-📊 Analysis Performed
-
-Sales Trend Analysis
-Monthly sales growth
-Seasonal sales patterns
-Profitability Analysis
-Profit by category
-Profit vs Discount analysis
-Customer Behavior Analysis
-Top spending customers
-Repeat customer trends
-Correlation Analysis
-Relationship between sales, profit, and discounts
-
-📌 Sample Python Code
-monthly_sales = df.groupby('Month')['Sales'].sum()
-
-monthly_sales.plot(marker='o')
-
-plt.title("Monthly Sales Trend")
-plt.xlabel("Month")
-plt.ylabel("Sales")
-
-plt.show()
-
-📈 Power BI Dashboard
-
-Developed a professional and interactive Power BI dashboard to visualize sales and customer analytics.
-
-Dashboard Features
-KPI Cards
-Total Sales
-Total Profit
-Total Orders
-Total Customers
-Charts & Visualizations
-Monthly Sales Trend
-Sales by Region
-Profit by Category
-Top 10 Customers
-Profit vs Discount Scatter Plot
-Interactive Filters/Slicers
-Region
-Category
-Segment
-Ship Mode
-
-📌 Dashboard Preview
-
-Main Dashboard
-
-(Add dashboard screenshot here)
-
-📊 Key Business Insights
-
-The following insights were identified through the analysis:
-
-📌 Sales Insights
-
-Technology category generated the highest sales revenue.
-West region contributed the highest overall sales.
-
-📌 Profitability Insights
-
-High discounts significantly reduced profit margins.
-Some products generated high sales but resulted in negative profits.
-
-📌 Customer Insights
-
-A small group of customers contributed a major portion of total revenue.
-Corporate and Consumer segments generated the highest sales.
-📌 Business Recommendations
-Reduce excessive discounting on low-margin products.
-Focus marketing efforts on high-value customers.
-Improve profitability in underperforming regions.
-
-📁 Project Structure
-
-Sales_Customer_Analytics_Project/
-│
+```
+proj1_superstore/
 ├── data/
+│   ├── superstore_raw.csv
+│   └── superstore_clean.csv
 ├── sql/
+│   └── superstore_analysis.sql
 ├── python/
-├── dashboard/
-├── reports/
+│   ├── generate_data.py
+│   ├── eda_analysis.py
+│   └── superstore_eda.ipynb
 ├── screenshots/
+├── requirements.txt
 └── README.md
+```
 
-🚀 Skills Demonstrated
+## 🚀 Skills Demonstrated
 
-This project demonstrates practical skills in:
+SQL querying (joins, window functions, CTEs) · data cleaning · exploratory data analysis · dashboard development · data visualization · business storytelling
 
-SQL querying
-Data cleaning
-Exploratory Data Analysis
-Business analytics
-Dashboard development
-Data visualization
-Business storytelling
-Problem-solving
+## 🔮 Future Improvements
 
-📌 Learning Outcomes
+- Sales forecasting model
+- ML-based customer segmentation
+- Online-hosted dashboard, real-time data integration
 
-Through this project, I gained hands-on experience in:
+## 👨‍💻 Author
 
-End-to-end Data Analytics workflow
-SQL business analysis
-Python-based EDA
-Building Power BI dashboards
-Generating business insights from raw data
-Presenting analytical findings effectively
-📷 Screenshots
-
-(Add screenshots of:
-Power BI Dashboard
-SQL Queries
-Python Charts)
-
-🔮 Future Improvements
-
-Possible future enhancements:
-
-Add forecasting models
-Build customer segmentation using machine learning
-Deploy dashboard online
-Integrate real-time sales data
-Add predictive analytics features
-
-📌 Conclusion
-
-This project successfully demonstrates the complete lifecycle of a Data Analytics project starting from raw data processing to dashboard reporting and business insight generation.
-
-The project helped strengthen technical and analytical skills in SQL, Python, and Power BI while also improving business understanding and storytelling abilities.
+**Yeshwanth Mocherla** — Aspiring Data Analyst | SQL | Python | Power BI
