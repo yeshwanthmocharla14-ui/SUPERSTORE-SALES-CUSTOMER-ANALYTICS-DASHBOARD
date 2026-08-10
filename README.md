@@ -25,7 +25,7 @@ An end-to-end Data Analytics project analyzing retail sales and customer behavio
 
 ## 📂 Dataset Information
 
-**Source:** Synthetic dataset generated to mirror the structure and scale of the public Superstore retail dataset (52,347 transaction records), since the original working files were lost. Generation logic is in [`D:\Files\Materials\Data Analytics\Projects\Superstore Sale & Customer Analysis\Python\generate_data.py`](D:\Files\Materials\Data Analytics\Projects\Superstore Sale & Customer Analysis\Python\generate_data.py) — fully reproducible.
+**Source:** Synthetic dataset generated to mirror the structure and scale of the public Superstore retail dataset (52,347 transaction records), since the original working files were lost. Generation logic is in [`generate_data.py`](generate_data.py) — fully reproducible.
 
 Columns: Order ID, Order/Ship Date, Customer ID, Segment, Region, State, Category, Sub-Category, Sales, Quantity, Discount, Profit.
 
